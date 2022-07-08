@@ -7,7 +7,7 @@ const TowerComp = ({ id, disks, handleDrop, handleDrag }) => {
       onDrop={handleDrop}
     >
       <div className="center-bar" />
-      {disks.map((tile, index) => {
+      {disks?.map((tile, index) => {
         const tileCount = disks.length;
         const tileStyles = {
           width: `${tile.width}em`,
@@ -18,7 +18,7 @@ const TowerComp = ({ id, disks, handleDrop, handleDrag }) => {
           <div
             {...tile}
             className="tile"
-            draggable
+            draggable="true"
             key={`column-${id}-${tile.id}`}
             onDragOver={(e) => e.preventDefault()}
             onDragStart={(e) => handleDrag(e, tile, id)}
