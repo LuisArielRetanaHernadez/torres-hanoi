@@ -74,7 +74,7 @@ const App = () => {
     for (let i = disks; i > 0; i--) {
       tempTower.add(i)
     }
-
+    setMoveCount(0)
     setTowerOne(tempTower)
     setTowerTwo(tempTowerTwo?.deletStacks(disks))
     setTowerThree(tempTowerThree?.deletStacks(disks))
@@ -116,36 +116,22 @@ const App = () => {
       e.preventDefault();
       const tempGoodMove = deepCopy(goodMove)
       const tempDestination = deepCopy(destination)
-      console.log(dropColumn, ' source: ',  dragTile.towerId)
       const data = e.dataTransfer.getData("text");
-      console.log('data ', data, ' goodMove ', goodMove)
-      console.log('torre de destino, ', destination, ' id ', +dropColumn)
-
-      if (+dropColumn === 1) {
-        console.log('destino 1')
-        setTowerOne(tempDestination)
-      }
-      if (+dropColumn === 2) {
-        console.log('destino 2')
-        setTowerTwo(tempDestination)
-      }
-      if (+dropColumn === 3) {
-        console.log('destino 3')
-        setTowerThree(tempDestination)
-      }
       
-      if (+dragTile.towerId === 1) {
-        console.log('origen 1')
-        setTowerOne(tempGoodMove)
-      }
-      if (+dragTile.towerId === 2) {
-        console.log('origen 2')
-        setTowerTwo(tempGoodMove)
-      }
-      if (+dragTile.towerId === 3) {
-        console.log('origen 3')
-        setTowerThree(tempGoodMove)
-      }      
+      console.log('data ', data, ' goodMove ', goodMove)
+
+      if (+dropColumn === 1) setTowerOne(tempDestination)
+
+      if (+dropColumn === 2) setTowerTwo(tempDestination)
+
+      if (+dropColumn === 3) setTowerThree(tempDestination)
+      
+      if (+dragTile.towerId === 1) setTowerOne(tempGoodMove)
+      
+      if (+dragTile.towerId === 2) setTowerTwo(tempGoodMove)
+  
+      if (+dragTile.towerId === 3) setTowerThree(tempGoodMove)
+          
 
       // e.target.appendChild(document.getElementById(data));
       setMoveCount((prevState) => prevState + 1); //Actualizar los movimientos
